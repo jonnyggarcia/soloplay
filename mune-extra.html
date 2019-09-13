@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>MUNE - EXTRA</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="muneEngine.js"></script>
+
+<style>
+
+
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  font-size: calc(5px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+
+}
+
+h1{
+line-height: 10px;
+}
+
+
+
+textarea {
+  display: block;
+  width: 98%;
+  font-family:"Courier New", Times, monospace;
+  font-size: 15px;
+  height: 98%;
+}
+
+button {
+  padding: 7px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #ccc5b1;
+
+  border: 0px;
+  border-radius: 0px;
+  background: none;
+
+  text-align: left;
+}
+
+button.color0{
+  color: #ccc5b1;
+}
+button.bold{
+  font-weight: bold;
+}
+
+button.color1{
+  color: #ebcca9;
+}
+button.color2{
+  color: #d5eb75;
+}
+button.color3{
+  color: #ffa7a1;
+}
+button.color4{
+  color: #6fbdfc;
+}
+button.color5{
+  color: #cc88fc;
+}
+button.color6{
+  color: #fcad58;
+}
+button.color7{
+  color: #fc6358;
+}
+button.color8{
+  color: #80d983;
+}
+
+button:hover {
+  color: #f1f1f1;
+}
+
+
+a {
+  text-decoration: none;
+  color: gray;
+}
+
+a:hover{
+  color: white;
+  font-weight: bold;
+}
+
+
+/* Style the header */
+.header {
+  background-color: #f1f1f1;
+  padding: 0px;
+  text-align: center;
+}
+
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 0px;
+  height: 100vh;
+}
+
+.column.left {
+  width: 75%;
+}
+
+.column.right {
+  width: 25%;
+}
+
+.column.left2 {
+  width: 70%;
+}
+.column.right2 {
+  width: 30%;
+}
+
+
+.column.backcolor {
+  background-color: #242424;
+}
+
+.line {
+  float: left;
+  width: 100%;
+  padding: 0px;
+  overflow-x : hidden;
+}
+
+/* Left and right column */
+.line.top {
+  height: 20vh;
+  padding-left: 10px;
+}
+
+/* Middle column */
+.line.middle {
+  height: 65vh;
+  padding-left: 10px;
+
+}
+
+/* Bottom column */
+.line.bottom {
+  height: 15vh;
+  background-color: #242424;
+  color: #818181;
+}
+
+.container {
+	max-height: 100vh;
+	overflow: auto;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.left, .column.right {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="row">
+
+
+  <div class="column left">
+
+
+    <div class="line top">
+      <div class="column left2">
+        <h2>EMULADOR DE MESTRE MUNE - EXTRA </h2>
+        <a href="https://homebrewery.naturalcrit.com/share/rkmo0t9k4Q" target="_blank">  documento original </a>
+        <br>
+        <a href="https://www.ironswornrpg.com/" target="_blank">  tabelas do Ironsworn </a>
+        <br>
+        <a href="index.html">home</a>
+      </div>
+
+      <div class="column right2" id="divIMG">
+      </div>
+
+    </div>
+
+
+
+
+
+
+    <div class="line middle">
+      <textarea name="log" id="log" style="font-family:Courier New;"></textarea>
+    </div>
+
+
+
+
+
+    <div class="line bottom">
+      <button type="button" class="color0 bold" onclick="rollDiceMove()">2d6+</button><input type="number" name="modifier" id="modifier" value="0">
+      <button type="button" class="color8 bold" onclick="rollDiceMoveAdvantage()">+</button>
+      <button type="button" class="color7 bold" onclick="rollDiceMoveDisAdvantage()">-</button>
+      &nbsp;&nbsp;
+      XP: <input type="number" name="xp" id="xp" value="0">
+      <button type="button" class="color0 bold" onclick="clearLog()"            >Limpar Log</button>
+      <br>
+      <button type="button" class="color0 bold" onclick="Oracle()"              >Oráculo</button>
+      <button type="button" class="color0 bold" onclick="OracleLikely()"        >Oráculo Provável</button>
+      <button type="button" class="color0 bold" onclick="OracleUnlikely()"      >Oráculo Improvável</button>
+      <button type="button" class="color0 bold" onclick="OracleProbability()"   >Oráculo Probabilidade</button>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="column right backcolor">
+	<div class="container">
+    <table>
+      <tr>
+        <td>
+          <button type="button" class="color0 bold" onclick="diceRoll(4)">1d4</button>
+        </td>
+        <td>
+          <button type="button" class="color8 bold" onclick="diceRollAdvantage(4)">+</button>
+        </td>
+        <td>
+          <button type="button" class="color7 bold" onclick="diceRollDisAdvantage(4)">-</button>
+        </td>
+        <td>
+          <button type="button" class="color6" onclick="rollIntervention()">Intervenção</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="button" class="color0 bold" onclick="diceRoll(6)">1d6</button>
+        </td>
+        <td>
+          <button type="button" class="color8 bold" onclick="diceRollAdvantage(6)">+</button>
+        </td>
+        <td>
+          <button type="button" class="color7 bold" onclick="diceRollDisAdvantage(6)">-</button>
+        </td>
+        <td>
+          <button type="button" class="color6" onclick="OracleAmiss()">Algo Estranho</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="button" class="color0 bold" onclick="diceRoll(8)">1d8</button>
+        </td>
+        <td>
+          <button type="button" class="color8 bold" onclick="diceRollAdvantage(8)">+</button>
+        </td>
+        <td>
+          <button type="button" class="color7 bold" onclick="diceRollDisAdvantage(8)">-</button>
+        </td>
+        <td>
+          <button type="button" class="color6" onclick="OracleMysticBacklash()">Efeito Colateral Mágico</button>
+        </td>
+
+      </tr>
+      <tr>
+        <td>
+          <button type="button" class="color0 bold" onclick="diceRoll(10)">1d10</button>
+        </td>
+        <td>
+          <button type="button" class="color8 bold" onclick="diceRollAdvantage(10)">+</button>
+        </td>
+        <td>
+          <button type="button" class="color7 bold" onclick="diceRollDisAdvantage(10)">-</button>
+        </td>
+        <td>
+          <button type="button" class="color6" onclick="OraclePlotTwist()">Virada na trama</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="button" class="color0 bold" onclick="diceRoll(12)">1d12</button>
+        </td>
+        <td>
+          <button type="button" class="color8 bold" onclick="diceRollAdvantage(12)">+</button>
+        </td>
+        <td>
+          <button type="button" class="color7 bold" onclick="diceRollDisAdvantage(12)">-</button>
+        </td>
+        <td>
+          <button type="button" class="color6" onclick="OracleIcon()">Icone</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="button" class="color0 bold" onclick="diceRoll(20)">1d20</button>
+        </td>
+        <td>
+          <button type="button" class="color8 bold" onclick="diceRollAdvantage(20)">+</button>
+        </td>
+        <td>
+          <button type="button" class="color7 bold" onclick="diceRollDisAdvantage(20)">-</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="button" class="color0  bold" onclick="diceRoll(100)">1d100</button>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td>
+          <button type="button" class="color1" onclick="OracleAction()">Ações</button>
+          <br>
+          <button type="button" class="color1" onclick="OracleCombat()">Ações de Combate</button>
+          <br>
+          <button type="button" class="color1" onclick="OracleTheme()">Tema</button>
+          <br>
+          <button type="button" class="color1" onclick="OracleWeather()">Clima</button>
+          <br>
+          <button type="button" class="color5" onclick="OracleObjects()">Objetos</button>
+          <br>
+          <button type="button" class="color5" onclick="OracleTreasure()">Tesouros</button>
+          <br>
+          <button type="button" class="color5" onclick="OracleObejctDescriptors()">Descritores</button>
+          <br>
+          <button type="button" class="color3" onclick="OracleSettlementProblem()">Problema de Povoados</button>
+          <br>
+          <button type="button" class="color3" onclick="OracleBuildings()">Construções</button>
+          <br>
+          <button type="button" class="color3" onclick="OracleTownSpeciality()">Especialidade de Povoados</button>
+        </td>
+        <td>
+          <button type="button" class="color2" onclick="OracleNames()">Nome de Personagem</button>
+          <br>
+          <button type="button" class="color2" onclick="NPCBehaviour()">Comportamento</button>
+          <br>
+          <button type="button" class="color2" onclick="OracleCharDescriptor()">Descrição</button>
+          <br>
+          <button type="button" class="color2" onclick="OracleCharRole()">Papel</button>
+          <br>
+          <button type="button" class="color2" onclick="OracleCharMotivation()">Motivação</button>
+          <br>
+          <button type="button" class="color4" onclick="OracleRegions()">Terrenos</button>
+          <br>
+          <button type="button" class="color4" onclick="OraclePlaces()">Locais</button>
+          <br>
+          <button type="button" class="color4" onclick="OraclePlaceNames()">Nomes</button>
+          <br>
+          <button type="button" class="color4" onclick="OraclePlaceDescriptor()">Descritores</button>
+          <br>
+          <button type="button" class="color4" onclick="OraclePlacesInterest()">Interesses</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  </div>
+
+</div>
+
+</body>
+</html>

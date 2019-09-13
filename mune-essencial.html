@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+
+<script src="muneEngine.js"></script>
+
+<style>
+body {
+  font-family: "Lato", sans-serif;
+  height: 100%;
+  margin: 0px;
+}
+
+html {
+    height: 100%;
+}
+
+textarea{
+  width: 1vw;
+  height: 70vh;
+}
+
+h1{
+line-height: 10px;
+}
+
+
+textarea {
+    display: block;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+button {
+  padding: 10px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+
+  border: 0px;
+  border-radius: 0px;
+  background: none;
+}
+
+
+button:hover {
+  color: #f1f1f1;
+}
+
+
+a {
+  text-decoration: none;
+  color: gray;
+
+}
+a:hover{
+  color: #6700b5;
+}
+
+/* ----------------------------------------------------------------- */
+.sideNav {
+  height: 100%;
+  width: 400px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #242424;
+  overflow-x: hidden;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+/* ----------------------------------------------------------------- */
+
+
+.bottomNav {
+  height: 100px;;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  background-color: #242424;
+  overflow-x: hidden;
+  padding-top: 20px;
+  padding-left: 0px;
+}
+
+/* ----------------------------------------------------------------- */
+
+
+.main {
+  margin-left: 300px; /* Same as the width of the sidenav */
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+
+</head>
+
+<body>
+
+
+<div class="sideNav">
+
+  <table>
+    <tr>
+      <td>
+        <button type="button" onclick="diceRoll(4)">1d4</button>
+      </td>
+      <td>
+        <button type="button" onclick="diceRollAdvantage(4)">+</button>
+      </td>
+      <td>
+        <button type="button" onclick="diceRollDisAdvantage(4)">-</button>
+      </td>
+      <td>
+        <button type="button" onclick="rollIntervention()">Intervenção</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button type="button" onclick="diceRoll(6)">1d6</button>
+      </td>
+      <td>
+        <button type="button" onclick="diceRollAdvantage(6)">+</button>
+      </td>
+      <td>
+        <button type="button" onclick="diceRollDisAdvantage(6)">-</button>
+      </td>
+      <td>
+        <button type="button" onclick="OracleAmiss()">Algo Estranho</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button type="button" onclick="diceRoll(8)">1d8</button>
+      </td>
+      <td>
+        <button type="button" onclick="diceRollAdvantage(8)">+</button>
+      </td>
+      <td>
+        <button type="button" onclick="diceRollDisAdvantage(8)">-</button>
+      </td>
+      <td>
+        <button type="button" onclick="NPCBehaviour()">Comportamento NPC</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button type="button" onclick="diceRoll(10)">1d10</button>
+      </td>
+      <td>
+        <button type="button" onclick="diceRollAdvantage(10)">+</button>
+      </td>
+      <td>
+        <button type="button" onclick="diceRollDisAdvantage(10)">-</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button type="button" onclick="diceRoll(12)">1d12</button>
+      </td>
+      <td>
+        <button type="button" onclick="diceRollAdvantage(12)">+</button>
+      </td>
+      <td>
+        <button type="button" onclick="diceRollDisAdvantage(12)">-</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button type="button" onclick="diceRoll(20)">1d20</button>
+      </td>
+      <td>
+        <button type="button" onclick="diceRollAdvantage(20)">+</button>
+      </td>
+      <td>
+        <button type="button" onclick="diceRollDisAdvantage(20)">-</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button type="button" onclick="diceRoll(100)">1d100</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<h1>EMULADOR DE MESTRE MUNE </h1>
+<a href="https://homebrewery.naturalcrit.com/share/rkmo0t9k4Q" target="_blank">  documento original </a>
+<br>
+<a href="index.html">home</a>
+<br><br>
+<form name="res" id="res">
+
+<div>
+  <textarea name="log" id="log" style="font-family:Courier New;"></textarea>
+</div>
+
+
+<div class="bottomNav">
+
+<button type="button" onclick="rollDiceMove()">2d6+</button><input type="number" name="modifier" id="modifier" value="0">
+<button type="button" onclick="rollDiceMoveAdvantage()">+</button>
+<button type="button" onclick="rollDiceMoveDisAdvantage()">-</button>
+<br>
+<button type="button" class="button" onclick="Oracle()"              >Oráculo</button>
+<button type="button" class="button" onclick="OracleLikely()"        >Oráculo Provável</button>
+<button type="button" class="button" onclick="OracleUnlikely()"      >Oráculo Improvável</button>
+<button type="button" class="button" onclick="OracleProbability()"   >Oráculo Probabilidade</button>
+</div>
+
+
+
+</body>
+
+</html>
